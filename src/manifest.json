@@ -1,0 +1,27 @@
+{
+  "name": "chrome-extension-vue3-demo",
+  "description": "chrome-extension-vue3-demo",
+  "version": "1.0",
+  "manifest_version": 3,
+  "permissions": ["storage", "tabs", "activeTab", "downloads"],
+  "action": {
+    "default_icon": "icon/icon.png",
+    "default_title": "测试",
+    "default_popup": "src/popup.html"
+  },
+  "background": {
+    "service_worker": "js/background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["js/content.js"],
+      "run_at": "document_end"
+    }
+  ],
+  // "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
+  // "content_security_policy": {
+  //   "extension_pages": "script-src 'self' 'wasm-unsafe-eval'; object-src 'self';"
+  // },
+  "devtools_page": "src/devtools.html"
+}
