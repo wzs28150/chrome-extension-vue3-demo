@@ -1,55 +1,20 @@
 console.log('background start')
 
-// const filesInDirectory = (dir) =>
-//   new Promise((resolve) =>
-//     dir.createReader().readEntries((entries) =>
-//       Promise.all(
-//         entries
-//           .filter((e) => e.name[0] !== '.')
-//           .map((e) =>
-//             e.isDirectory
-//               ? filesInDirectory(e)
-//               : new Promise((resolve) => e.file(resolve))
-//           )
-//       )
-//         .then((files) => [].concat(...files))
-//         .then(resolve)
-//     )
-//   )
+chrome.runtime.onInstalled.addListener(() => {
+  chrome.contextMenus.create({
+    id: 'sampleMenu',
+    title: '我的自定义菜单',
+    contexts: ['all'], // 在所有上下文中显示
+  })
 
-// const timestampForFilesInDirectory = (dir) =>
-//   filesInDirectory(dir).then((files) =>
-//     files.map((f) => f.name + f.lastModifiedDate).join()
-//   )
-
-// const reload = () => {
-//   window.chrome.tabs.query(
-//     {
-//       active: true,
-//       currentWindow: true,
-//     },
-//     (tabs) => {
-//       // NB: see https://github.com/xpl/crx-hotreload/issues/5
-//       if (tabs[0]) {
-//         window.chrome.tabs.reload(tabs[0].id)
-//       }
-//       window.chrome.runtime.reload()
-//     }
-//   )
-// }
-
-// const watchChanges = (dir, lastTimestamp) => {
-//   timestampForFilesInDirectory(dir).then((timestamp) => {
-//     if (!lastTimestamp || lastTimestamp === timestamp) {
-//       setTimeout(() => watchChanges(dir, timestamp), 1000) // retry after 1s
-//     } else {
-//       reload()
-//     }
-//   })
-// }
-
-// window.chrome.management.getSelf((self) => {
-//   if (self.installType === 'development') {
-//     window.chrome.runtime.getPackageDirectoryEntry((dir) => watchChanges(dir))
-//   }
-// })
+  chrome.contextMenus.onClicked.addListener((info, tab) => {
+    if (info.menuItemId === 'sampleMenu') {
+      chrome.notifications.create({
+        type: 'basic',
+        iconUrl: '../icon/icon.png',
+        title: '菜单被点击了！',
+        message: '这是通过右键菜单触发的通知。',
+      })
+    }
+  })
+})

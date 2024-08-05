@@ -3,7 +3,17 @@
   "description": "chrome-extension-vue3-demo",
   "version": "1.0",
   "manifest_version": 3,
-  "permissions": ["storage", "tabs", "activeTab", "downloads"],
+  "icons": {
+    "48": "icon/icon.png"
+  },
+  "permissions": [
+    "storage",
+    "tabs",
+    "activeTab",
+    "downloads",
+    "contextMenus",
+    "notifications"
+  ],
   "action": {
     "default_icon": "icon/icon.png",
     "default_title": "测试",

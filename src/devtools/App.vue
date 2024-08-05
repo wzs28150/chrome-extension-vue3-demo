@@ -1,6 +1,7 @@
 <template>
   <div id="app">
-    dev tool
+    <div>dev tool</div>
+    <el-button>点击</el-button>
   </div>
 </template>
 
