@@ -1,12 +1,3 @@
-/*
- * @Title:
- * @Description:
- * @version:
- * @Author: wzs
- * @Date: 2024-08-04 19:36:47
- * @LastEditors: wzs
- * @LastEditTime: 2024-08-04 19:36:47
- */
 // 代码来源：https://github.com/xpl/crx-hotreload/edit/master/hot-reload.js
 const filesInDirectory = (dir) =>
   new Promise((resolve) =>

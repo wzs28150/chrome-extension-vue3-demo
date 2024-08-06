@@ -22,6 +22,11 @@ const routes = [
         name: 'about',
         component: () => import('@popup/pages/about/Index.vue'),
       },
+      {
+        path: 'demos',
+        name: 'demos',
+        component: () => import('@popup/pages/demos/Index.vue'),
+      },
     ],
   },
 ]

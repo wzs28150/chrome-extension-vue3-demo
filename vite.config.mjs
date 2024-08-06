@@ -37,6 +37,7 @@ export default defineConfig(({ mode, command }) => {
       extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json', '.vue'],
     },
     build: {
+      emptyOutDir: false,
       rollupOptions: {
         input: {
           devtools: path.resolve(__dirname, 'src/devtools.html'),
