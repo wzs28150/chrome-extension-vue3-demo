@@ -26,14 +26,14 @@ export default defineConfig(({ mode, command }) => {
   ]
   return {
     resolve: {
-      // https://cn.vitejs.dev/config/#resolve-alias
       alias: {
         // 设置路径
         '~': path.resolve(__dirname, './'),
         // 设置别名
-        '@': path.resolve(__dirname, './src'),
+        '@popup': path.resolve(__dirname, './src/popup'),
+        '@devtools': path.resolve(__dirname, './src/devtools'),
+        '@nodepath': path.resolve(__dirname, './node_modules'),
       },
-      // https://cn.vitejs.dev/config/#resolve-extensions
       extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json', '.vue'],
     },
     build: {
@@ -53,7 +53,7 @@ export default defineConfig(({ mode, command }) => {
     },
     plugins,
     server: {
-      port: 80,
+      port: 8088,
       host: true,
       open: true,
     },

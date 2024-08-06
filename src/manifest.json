@@ -1,19 +1,12 @@
 {
   "name": "chrome-extension-vue3-demo",
-  "description": "chrome-extension-vue3-demo",
+  "description": "使用vue开发谷歌插件的基础模板",
   "version": "1.0",
   "manifest_version": 3,
   "icons": {
     "48": "icon/icon.png"
   },
-  "permissions": [
-    "storage",
-    "tabs",
-    "activeTab",
-    "downloads",
-    "contextMenus",
-    "notifications"
-  ],
+  "permissions": ["tabs", "activeTab", "contextMenus", "notifications"],
   "action": {
     "default_icon": "icon/icon.png",
     "default_title": "测试",
