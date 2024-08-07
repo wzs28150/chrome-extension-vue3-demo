@@ -1,12 +1,13 @@
 <template>
-  <div id="app">
-    <div>dev tool 223asasd</div>
-    <el-button>点击</el-button>
-  </div>
+  <router-view />
 </template>
 
 <script setup>
-import hotReload  from './hot-reload';
- console.log('created')
- hotReload()
+import hotReload from './hot-reload';
+if (import.meta.env.MODE === 'watch') {
+  hotReload({
+    ui: import.meta.env.VITE_UI_HOT,
+    web: import.meta.env.VITE_WEB_HOT
+  });
+}
 </script>

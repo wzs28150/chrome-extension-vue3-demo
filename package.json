@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "vite build --watch",
+    "dev": "vite build --watch --mode watch",
     "build": "vite build",
     "preview": "vite"
   },
@@ -20,6 +20,7 @@
   },
   "dependencies": {
     "@element-plus/icons-vue": "^2.3.1",
+    "@vueuse/core": "^10.11.0",
     "element-plus": "^2.7.7",
     "nprogress": "^0.2.0",
     "rollup-plugin-copy": "^3.5.0",

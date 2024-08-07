@@ -3,9 +3,12 @@
 </template>
 <script>
 import hotReload from './hot-reload';
-hotReload({
-  ui: true
-});
+if (import.meta.env.MODE === 'watch') {
+  hotReload({
+    ui: import.meta.env.VITE_UI_HOT,
+    web: import.meta.env.VITE_WEB_HOT
+  });
+}
 </script>
 
 <style lang="scss">

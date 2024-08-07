@@ -2,7 +2,7 @@
   <div class="index">
     <div class="inner">
       <h1>chrome-extension-vue3-demo</h1>
-      <p>使用vue开发谷歌插件的基础模板1</p>
+      <p>使用vue开发谷歌插件的基础模板</p>
     </div>
   </div>
 </template>
