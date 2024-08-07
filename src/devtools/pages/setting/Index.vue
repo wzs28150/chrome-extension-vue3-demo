@@ -2,8 +2,8 @@
   <div class="p_20">
     <h2 class="m_B20">设置</h2>
     <el-form :model="form" label-width="auto" label-position="top">
-      <el-form-item label="主题设置">
-        <el-radio-group v-model="isDark">
+      <el-form-item label="主题设置" @click="switchTheme">
+        <el-radio-group v-model="isDark" @change="beforeChange">
           <!-- <el-radio-button label="自动" value="auto" /> -->
           <el-radio-button label="浅色" :value="false" />
           <el-radio-button label="深色" :value="true" />
@@ -31,9 +31,6 @@ watch(
   () => isDark,
   (val) => {
     toggleDark()
-  },
-  {
-    immediate: true,
   }
 )
 
