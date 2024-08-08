@@ -11,7 +11,8 @@
     "activeTab",
     "contextMenus",
     "notifications",
-    "sidePanel"
+    "sidePanel",
+    "bookmarks"
   ],
   "action": {
     "default_icon": "icon/icon.png",

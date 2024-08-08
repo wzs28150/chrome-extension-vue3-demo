@@ -6,11 +6,12 @@ import {
 import NProgress from 'nprogress'
 import '@nodepath/nprogress/nprogress.css'
 import Layout from '@sidepanel/layout/Index.vue'
+import DemoLayout from '@sidepanel/layout/Demos.vue'
 const routes = [
   {
     path: '/',
     component: Layout,
-    redirect: 'index',
+    redirect: '/index',
     children: [
       {
         path: 'index',
@@ -19,13 +20,25 @@ const routes = [
       },
       {
         path: 'about',
-        name: 'about',
+        name: 'About',
         component: () => import('@sidepanel/pages/about/Index.vue'),
       },
       {
         path: 'demos',
-        name: 'demos',
-        component: () => import('@sidepanel/pages/demos/Index.vue'),
+        redirect: '/demos/index',
+        component: DemoLayout,
+        children: [
+          {
+            path: 'index',
+            name: 'Demos',
+            component: () => import('@sidepanel/pages/demos/index.vue'),
+          },
+          {
+            path: 'bookmarks',
+            name: 'Bookmarks',
+            component: () => import('@sidepanel/pages/demos/Bookmarks.vue'),
+          },
+        ],
       },
     ],
   },
