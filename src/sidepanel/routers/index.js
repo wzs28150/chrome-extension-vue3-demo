@@ -5,27 +5,27 @@ import {
 } from 'vue-router'
 import NProgress from 'nprogress'
 import '@nodepath/nprogress/nprogress.css'
-import Layout from '@devtools/layout/Index.vue'
+import Layout from '@sidepanel/layout/Index.vue'
 const routes = [
   {
     path: '/',
     component: Layout,
-    redirect: '/index',
+    redirect: 'index',
     children: [
       {
         path: 'index',
         name: 'Index',
-        component: () => import('@devtools/pages/index/Index.vue'),
+        component: () => import('@sidepanel/pages/index/Index.vue'),
       },
       {
         path: 'about',
         name: 'about',
-        component: () => import('@devtools/pages/about/Index.vue'),
+        component: () => import('@sidepanel/pages/about/Index.vue'),
       },
       {
-        path: 'setting',
-        name: 'setting',
-        component: () => import('@devtools/pages/setting/Index.vue'),
+        path: 'demos',
+        name: 'demos',
+        component: () => import('@sidepanel/pages/demos/Index.vue'),
       },
     ],
   },

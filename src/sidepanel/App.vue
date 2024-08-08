@@ -1,16 +1,29 @@
 <template>
-  <router-view />
+  <router-view></router-view>
 </template>
-
-<script setup>
+<script>
 import hotReload from './hot-reload';
-import { useDarkMode } from '@devtools/utils/index';
 if (import.meta.env.MODE === 'watch') {
   hotReload({
     ui: import.meta.env.VITE_UI_HOT == 'true',
     web: import.meta.env.VITE_WEB_HOT == 'true'
   });
 }
-useDarkMode()
-
 </script>
+
+<style lang="scss">
+* {
+  margin: 0;
+  padding: 0;
+}
+
+#app {
+  height: 100%;
+}
+
+html,
+body {
+  height: 100%;
+  font-size: 16px;
+}
+</style>

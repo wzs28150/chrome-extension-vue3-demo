@@ -1,7 +1,7 @@
 <template>
   <div class="nav">
     <div class="nav-inner">
-      <el-menu default-active="/index" class="el-menu-vertical-demo" :collapse="true" router>
+      <el-menu :default-active="route.path" class="el-menu-vertical-demo" :collapse="true" router>
         <el-menu-item v-for="item in menuList" :index="item.path">
           <el-icon>
             <component :is="item.icon" />
@@ -11,7 +11,7 @@
       </el-menu>
     </div>
 
-    <el-menu class="el-menu-vertical-demo" :collapse="true" router>
+    <el-menu class="el-menu-vertical-demo" :collapse="true" router :default-active="route.path">
       <el-menu-item index="/setting">
         <el-icon>
           <component :is="Setting" />
@@ -28,6 +28,8 @@ import {
   Location,
   Setting,
 } from '@element-plus/icons-vue'
+import { useRoute } from 'vue-router';
+const route = useRoute();
 
 const menuList = ref([
   {

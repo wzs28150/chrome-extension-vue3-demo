@@ -31,6 +31,7 @@ export default defineConfig(({ mode, command }) => {
         '~': path.resolve(__dirname, './'),
         // 设置别名
         '@popup': path.resolve(__dirname, './src/popup'),
+        '@sidepanel': path.resolve(__dirname, './src/sidepanel'),
         '@devtools': path.resolve(__dirname, './src/devtools'),
         '@nodepath': path.resolve(__dirname, './node_modules'),
       },
@@ -42,6 +43,7 @@ export default defineConfig(({ mode, command }) => {
         input: {
           devtools: path.resolve(__dirname, 'src/devtools.html'),
           popup: path.resolve(__dirname, 'src/popup.html'),
+          sidepanel: path.resolve(__dirname, 'src/sidepanel.html'),
           background: path.resolve(__dirname, 'src/background/background.js'),
           content: path.resolve(__dirname, 'src/content/content.js'),
         },

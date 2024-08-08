@@ -36,8 +36,8 @@ const handleSelect = (key, keyPath) => {
 </script>
 <style lang="scss" scoped>
 .layout {
-  width: 300px;
-  height: 500px;
+  width: 100vw;
+  height: 100vh;
   --el-menu-horizontal-height: 40px;
   --el-menu-item-height: 36px;
   display: flex;

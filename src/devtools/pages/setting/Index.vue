@@ -1,39 +1,22 @@
 <template>
   <div class="p_20">
     <h2 class="m_B20">设置</h2>
-    <el-form :model="form" label-width="auto" label-position="top">
+    <el-form label-width="auto" label-position="top">
       <el-form-item label="主题设置" @click="switchTheme">
-        <el-radio-group v-model="isDark" @change="beforeChange">
-          <!-- <el-radio-button label="自动" value="auto" /> -->
+        <!--<el-radio-group v-model="isDark" @change="beforeChange">
+          <!~~ <el-radio-button label="自动" value="auto" /> ~~>
           <el-radio-button label="浅色" :value="false" />
           <el-radio-button label="深色" :value="true" />
-        </el-radio-group>
+        </el-radio-group>-->
+        <el-switch v-model="isDark" :before-change="beforeChange" active-text="深色模式" inactive-text="浅色模式" />
       </el-form-item>
     </el-form>
   </div>
 </template>
 
 <script setup>
-import { useDark, useToggle } from '@vueuse/core'
-const form = ref({
-  skin: 'auto'
-})
-const isDark = useDark({
-  storageKey: 'el-theme-appearance',
-  valueDark: 'dark',
-  valueLight: 'light',
-})
-
-const toggleDark = useToggle(isDark)
-
-
-watch(
-  () => isDark,
-  (val) => {
-    toggleDark()
-  }
-)
-
+import { useDarkMode } from '@devtools/utils/index';
+const { isDark } = useDarkMode();
 let resolveFn
 const switchTheme = (event) => {
   const isAppearanceTransition =
@@ -50,6 +33,8 @@ const switchTheme = (event) => {
     Math.max(x, innerWidth - x),
     Math.max(y, innerHeight - y)
   )
+  console.log(endRadius);
+
   // @ts-expect-error: Transition API
   const transition = document.startViewTransition(async () => {
     resolveFn(true)
