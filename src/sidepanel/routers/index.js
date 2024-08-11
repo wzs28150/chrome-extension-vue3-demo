@@ -19,11 +19,6 @@ const routes = [
         component: () => import('@sidepanel/pages/index/Index.vue'),
       },
       {
-        path: 'about',
-        name: 'About',
-        component: () => import('@sidepanel/pages/about/Index.vue'),
-      },
-      {
         path: 'demos',
         redirect: '/demos/index',
         component: DemoLayout,
@@ -32,11 +27,17 @@ const routes = [
             path: 'index',
             name: 'Demos',
             component: () => import('@sidepanel/pages/demos/index.vue'),
+            meta: {
+              title: '示例',
+            },
           },
           {
             path: 'bookmarks',
             name: 'Bookmarks',
             component: () => import('@sidepanel/pages/demos/Bookmarks.vue'),
+            meta: {
+              title: '书签',
+            },
           },
         ],
       },

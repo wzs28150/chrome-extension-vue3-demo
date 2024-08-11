@@ -1,4 +1,5 @@
 // 代码来源：https://github.com/xpl/crx-hotreload/edit/master/hot-reload.js
+import { useGetCurrentTab, useTabReload } from '@chromeuse'
 export default function hotReload(options) {
   const filesInDirectory = (dir) =>
     new Promise((resolve) =>
@@ -36,16 +37,12 @@ export default function hotReload(options) {
     })
   }
 
-  chrome.management.getSelf((self) => {
+  chrome.management.getSelf(async (self) => {
     if (self.installType === 'development') {
       chrome.runtime.getPackageDirectoryEntry((dir) => watchChanges(dir))
       if (options.web) {
-        chrome.tabs.query({ active: true, lastFocusedWindow: true }, (tabs) => {
-          // NB: see https://github.com/xpl/crx-hotreload/issues/5
-          if (tabs[0]) {
-            chrome.tabs.reload(tabs[0].id)
-          }
-        })
+        const tab = await useGetCurrentTab()
+        await useTabReload(tab.id)
       }
     }
   })

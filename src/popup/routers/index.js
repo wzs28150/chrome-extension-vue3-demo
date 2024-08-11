@@ -18,11 +18,6 @@ const routes = [
         component: () => import('@popup/pages/index/Index.vue'),
       },
       {
-        path: 'about',
-        name: 'about',
-        component: () => import('@popup/pages/about/Index.vue'),
-      },
-      {
         path: 'demos',
         name: 'demos',
         component: () => import('@popup/pages/demos/Index.vue'),

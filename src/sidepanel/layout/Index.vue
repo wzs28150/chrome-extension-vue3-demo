@@ -24,11 +24,7 @@ const menuList = ref([
   {
     name: "示例",
     path: '/demos'
-  },
-  {
-    name: "关于",
-    path: '/about'
-  },
+  }
 ])
 const handleSelect = (key, keyPath) => {
   console.log(key, keyPath)
@@ -55,6 +51,14 @@ const handleSelect = (key, keyPath) => {
 
   &-inner {
     flex: 1;
+    max-height: calc(100% - 40px);
+    overflow: hidden;
+  }
+
+  .nav {
+    position: relative;
+    z-index: 1;
+    box-shadow: 0 0 5px var(--el-color-info-light-8);
   }
 }
 

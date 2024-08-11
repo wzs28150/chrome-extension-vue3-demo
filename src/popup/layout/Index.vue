@@ -25,10 +25,6 @@ const menuList = ref([
     name: "示例",
     path: '/demos'
   },
-  {
-    name: "关于",
-    path: '/about'
-  },
 ])
 const handleSelect = (key, keyPath) => {
   console.log(key, keyPath)

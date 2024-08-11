@@ -4,12 +4,10 @@
   </div>
 </template>
 <script setup>
-function openSidePanel() {
-  chrome.tabs.query({ active: true, lastFocusedWindow: true }, (tabs) => {
-    if (tabs[0]) {
-      chrome.sidePanel.open({ tabId: tabs[0].id });
-    }
-  })
+import { useGetCurrentTab, useSidePanelOpen } from '@chromeuse';
+async function openSidePanel() {
+  const tab = await useGetCurrentTab();
+  await useSidePanelOpen(tab.id)
 }
 </script>
 <style lang="scss" scoped>

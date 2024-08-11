@@ -34,6 +34,7 @@ export default defineConfig(({ mode, command }) => {
         '@sidepanel': path.resolve(__dirname, './src/sidepanel'),
         '@devtools': path.resolve(__dirname, './src/devtools'),
         '@nodepath': path.resolve(__dirname, './node_modules'),
+        '@chromeuse': path.resolve(__dirname, './src/chromeuse'),
       },
       extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json', '.vue'],
     },
