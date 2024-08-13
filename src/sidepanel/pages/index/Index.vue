@@ -16,8 +16,9 @@
   </div>
 </template>
 <script setup>
+import { useCreateTab } from '@chromeuse';
 function open() {
-  chrome.tabs.create({ url: 'https://github.com/wzs28150/chrome-extension-vue3-demo' })
+  useCreateTab('https://github.com/wzs28150/chrome-extension-vue3-demo')
 }
 </script>
 <style lang="scss" scoped>

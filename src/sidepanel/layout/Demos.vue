@@ -32,7 +32,6 @@ const goBack = () => {
 
   &-inner {
     max-height: calc(100% - 41px);
-    overflow-y: scroll;
     flex: 1;
   }
 }

@@ -1,12 +1,14 @@
 <template>
-  <div class="index">
-    <el-tree :data="bookmarks" :props="defaultProps" style="max-width: 100vw">
+  <div class="index" v-loading="loading">
+    <el-tree :data="bookmarks" :props="defaultProps" node-key="id" :default-expanded-keys="expanded"
+      style="max-width: 100vw" ref="tree" @node-expand="handleNodeExpand" @node-collapse="handleNodeCollapse">
       <template #default="{ node, data }">
         <span class="custom-tree-node">
           <span class="label">{{ node.label }}</span>
           <span>
             <el-button size="mini" v-if="data.url" :icon="Link" type="primary" @click="open(data.url)" link></el-button>
-            <el-button size="mini" :icon="Delete" type="danger" link></el-button>
+            <el-button size="mini" v-if="(data.children && data.children.length == 0) || !data.children" :icon="Delete"
+              type="danger" link @click="handleRemove(data)"></el-button>
           </span>
         </span>
       </template>
@@ -18,28 +20,60 @@ import {
   Delete,
   Link,
 } from '@element-plus/icons-vue'
+import { useCreateTab, useGetBookmarksTree, useRemoveBookmark, watchBookmark } from '@chromeuse';
+
+const loading = ref(false)
 const defaultProps = {
   children: 'children',
   label: 'title',
 }
+const tree = ref(null)
+const expanded = ref([])
 const bookmarks = ref([])
 function open(url) {
-  chrome.tabs.create({ url })
+  useCreateTab(url)
 }
-async function init() {
-  console.log('init')
-  const tree = await chrome.bookmarks.getTree()
-  if (tree.length > 0) {
-    bookmarks.value = tree[0].children;
+
+function handleNodeExpand(data) {
+  // 当节点展开时，将节点ID添加到expandedNodes数组中
+  if (!expanded.value.includes(data.id)) {
+    expanded.value.push(data.id);
   }
-  console.log(bookmarks.value);
+  // 可以在这里做其他处理
+}
+
+function handleNodeCollapse(data) {
+  // 当节点折叠时，从expandedNodes数组中移除节点ID
+  const index = expanded.value.indexOf(data.id);
+  if (index > -1) {
+    expanded.value.splice(index, 1);
+  }
+}
+
+async function handleRemove(data) {
+  await useRemoveBookmark({ title: data.title })
+}
+
+async function getTree() {
+  loading.value = true
+  bookmarks.value = await useGetBookmarksTree()
+  setTimeout(() => {
+    loading.value = false
+  }, 1000)
+}
+
+async function init() {
+  getTree()
+  await watchBookmark(getTree)
 }
 init()
+
+
 </script>
 <style lang="scss" scoped>
 .index {
   background-color: #fff;
-  height: 100%;
+  height: calc(100vh - 81px);
 
   :deep(.el-tree) {
     --el-tree-node-content-height: 40px;
