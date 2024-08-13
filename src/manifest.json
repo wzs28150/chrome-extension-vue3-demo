@@ -12,7 +12,8 @@
     "contextMenus",
     "notifications",
     "sidePanel",
-    "bookmarks"
+    "bookmarks",
+    "webRequest"
   ],
   "action": {
     "default_icon": "icon/icon.png",
@@ -36,5 +37,6 @@
   // "content_security_policy": {
   //   "extension_pages": "script-src 'self' 'wasm-unsafe-eval'; object-src 'self';"
   // },
-  "devtools_page": "src/devtools.html"
+  "devtools_page": "src/devtools.html",
+  "host_permissions": ["*://localhost/*"]
 }
