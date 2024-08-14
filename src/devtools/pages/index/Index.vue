@@ -1,30 +1,54 @@
 <template>
   <div class="p_20">
-    <h2>首页</h2>
+    <h2>请求</h2>
+    <p class="m_T20" style="opacity: 0.7;">操作页面可查看页面的请求信息</p>
     <ul class="m_T20">
       <li class="m_B10" v-for="item in list">
-        <span><b>url:</b> {{ item.url }}</span>
-        <span><b>method:</b> {{ item.method }}</span>
-        <span><b>tabId:</b> {{ item.tabId }}</span>
-        <span><b>requestId:</b> {{ item.requestId }}</span>
+        <span><b>请求地址:</b> {{ item.url }}</span>
+        <span><b>请求方式:</b> {{ item.method }}</span>
+        <span><b>请求参数:</b> {{ item.queryString }}</span>
+        <span><b>请求状态:</b> {{ item.status }}{{ item.statusText }}</span>
+        <span><b>请求时间:</b> {{ item.responseTime }}毫秒</span>
       </li>
     </ul>
   </div>
 </template>
 <script setup>
-console.log('index')
+import { watchNetworkFinished } from '@chromeuse';
 const list = ref([])
-chrome.webRequest.onBeforeRequest.addListener((details) => {
-  console.log(details);
-  list.value.push(details)
-}, { urls: ["http://localhost:81/*"] }, [])
 
-chrome.webRequest.onBeforeSendHeaders.addListener(
-  (details) => {
-    console.log(details);
-    // list.value.push(details)
-  }, { urls: ["http://localhost:81/*"] }, []
-)
+async function getList() {
+  watchNetworkFinished((net) => {
+    const { request, response, _resourceType, time } = net;
+
+    console.log(request, response, _resourceType);
+
+    if (
+      _resourceType === 'xhr' ||
+      _resourceType === 'fetch' ||
+      request.url.endsWith('.json')
+    ) {
+      const item = { ...request, status: response.status, statusText: response.statusText, responseTime: time.toFixed(2) }
+      list.value.push(item);
+    }
+  });
+
+
+}
+getList();
+// chrome.devtools.network.onRequestFinished.addListener(
+//   (net) => {
+//     const { request, response, _resourceType, time } = net;
+//     if (
+//       _resourceType === 'xhr' ||
+//       _resourceType === 'fetch' ||
+//       request.url.endsWith('.json')
+//     ) {
+//       const item = { ...request, status: response.status, statusText: response.statusText, responseTime: time.toFixed(2) }
+//       list.value.push(item);
+//     }
+//   }
+// );
 </script>
 
 <style lang="scss" scoped>

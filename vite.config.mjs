@@ -19,7 +19,7 @@ export default defineConfig(({ mode, command }) => {
       targets: [
         { src: 'src/manifest.json', dest: 'dist' },
         { src: 'public/icon', dest: 'dist' },
-        { src: 'public/*', dest: 'dist' },
+        { src: 'src/rules.json', dest: 'dist' },
       ],
       hook: 'writeBundle', // 在构建完成后复制文件
     }),
