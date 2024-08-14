@@ -2,7 +2,9 @@
   <div class="devtools">
     <Nav />
     <div class="devtools-inner">
-      <router-view></router-view>
+      <el-scrollbar height="100%">
+        <router-view></router-view>
+      </el-scrollbar>
     </div>
   </div>
 </template>
@@ -16,6 +18,7 @@ import Nav from './components/Nav.vue';
 
   &-inner {
     flex: 1;
+    height: 100%;
   }
 }
 </style>
